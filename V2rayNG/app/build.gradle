@@ -74,6 +74,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
     testImplementation 'junit:junit:4.13'
 
+    implementation project(":Libv2ray")
+
     // Androidx
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
