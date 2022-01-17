@@ -13,6 +13,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import android.util.Log
+import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.AppConfig.ANG_PACKAGE
@@ -147,9 +148,15 @@ object V2RayServiceManager {
                 Log.d(ANG_PACKAGE, e.toString())
             }
 
-            v2rayPoint.configureFileContent = result.content
-            v2rayPoint.domainName = config.getV2rayPointDomainAndPort()
-            currentConfig = config
+            v2rayPoint.configureFileContent = result.content.also {
+                Log.d("AqrLei","configureFileContent: $it")
+            }
+            v2rayPoint.domainName = config.getV2rayPointDomainAndPort().also {
+                Log.d("AqrLei","domainName: $it")
+            }
+            currentConfig = config.also {
+                Log.d("AqrLei", "${Gson().toJson(it)}")
+            }
             v2rayPoint.enableLocalDNS = settingsStorage?.decodeBool(AppConfig.PREF_LOCAL_DNS_ENABLED) ?: false
             v2rayPoint.forwardIpv6 = settingsStorage?.decodeBool(AppConfig.PREF_FORWARD_IPV6) ?: false
             v2rayPoint.proxyOnly = settingsStorage?.decodeString(AppConfig.PREF_MODE) ?: "VPN" != "VPN"

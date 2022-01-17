@@ -82,7 +82,7 @@ class ServerActivity : BaseActivity() {
 
         val config = MmkvManager.decodeServerConfig(editGuid)
         when(config?.configType ?: createConfigType) {
-            EConfigType.VMESS -> setContentView(R.layout.activity_server_vmess)
+            EConfigType.VMESS , EConfigType.TROJAN-> setContentView(R.layout.activity_server_vmess)
             EConfigType.CUSTOM -> return
             EConfigType.SHADOWSOCKS -> setContentView(R.layout.activity_server_shadowsocks)
             EConfigType.SOCKS -> setContentView(R.layout.activity_server_socks)
